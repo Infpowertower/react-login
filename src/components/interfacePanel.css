@@ -1,0 +1,60 @@
+#InterfacePanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#panelBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 5;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: #2C5364;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid orange;
+    text-align: center;
+    width: 500px;
+    opacity: 1;
+    padding: 10px;
+}
+
+.panel > h2 {
+  padding: 0;
+  margin: 5px;
+}
+
+.New-input {
+    width: 90%;
+    height: 40px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 4px;
+    resize: none;
+}
+
+.New-input:focus {
+  border: 1px solid orange;
+}
+
+.Panel-button {
+  height: 40px;
+  min-width: 130px;
+}

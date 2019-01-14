@@ -1,32 +1,107 @@
+button, .Button {
+//transition-duration: 0.4s;
+  background-color: #2C5364;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover, .Button:hover {
+  color: orange;
+  border: 1px solid orange;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  transform: translateY(-1px);
+}
+
+button:active, .Button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+h1 {
+  cursor: default;
+}
+
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-rows: 50px auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+          "navbar"
+          "main";
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.Main {
+  grid-area: main;
+  min-height: 200px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.Datatable {
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #0F2027;
+  border-radius: 10px;
+  padding: 10px;
+  border-spacing: 0;
+  cursor: default;
+}
+
+.Datatable > thead {
+  font-size: 1.25em;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: white;
+  cursor: default;
+}
+
+.Table-head {
+  padding: 2px 10px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Table-item {
+  padding: 2px 10px;
+  color: white;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Table-item:hover {
+  color: orange;
+  background: #2C5364;
+}
+
+.Table-id {
+  cursor: default;
+}
+
+.Table-id:hover {
+  color: white;
+  background: #0f2027;
+}
+
+.align-right {
+  text-align: right;
+}
+
+#New-button {
+  height: 25px;
+  width: 150px;
+}
+
+.Delete-button {
+  height: 100%;
+}
+
+#loading {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px;
+  width: 200px;
 }
