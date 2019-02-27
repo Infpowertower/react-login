@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 import './App.css';
 
 class App extends Component {
@@ -9,11 +10,19 @@ class App extends Component {
     return (
         <section className="Panel">
           <form>
-          <input placeholder="Name" type="text"></input>
-          <input placeholder="Password" type="password"></input>
+            <input
+              placeholder="Name"
+              type="text"
+              required
+            />
+          <input
+              placeholder="Password"
+              type="password"
+              required
+            />
           <input type="submit" value="Submit"/>
           </form>
-          <div><button>Sign in</button><button>Sign up</button></div>
+          <div><Button>Sign in</Button><Button>Sign up</Button></div>
         </section>
     )
   }
