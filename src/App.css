@@ -1,81 +1,57 @@
 :root {
-  --main-color: hsla(80,50%,40%);
-  --attention-color: hsla(200,100%,30%);
+  --primary-color: rgb(#8bc34a);
+  --primary-variant-color: hsla(200,100%,30%);
+  --secondary-color: blue;
+  --secondary-variant-color: blue;
+  --error-color: red;
   --background-color: hsla(360,0%,100%);
-  --border-color: hsla(360,0%,60%);
-  --text-color: hsla(360,0%,20%);
-  --panel-max-width: 400px;
+  --on-background-color: hsla(360,0%,60%);
+  --on-primary-color: hsla(360,0%,20%);
+  --panel-max-width: 300px;
   --animation-length: 0.25s;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: hsla(360,0%,0%);
-    --text-color: hsla(360,0%,80%);
-    --panel-max-width: 400px;
+    --on-background-color: hsla(360,0%,80%);
   }
 }
 
 
 body {
   background: var(--background-color);  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, var(--border-color), var(--background-color));  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, var(--border-color), var(--background-color)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 100vh;
   width: 100vw;
   font-size: 12pt;
 }
 
-input {
-  padding: 5px;
-  margin: 5px 0;
-  width: 80%;
-  font-size: 1rem;
-  color: var(--text-color);
-
-  transition-duration: var(--animation-length);
-
-  background-color: var(--background-color);
-  border-radius: 5px;
-  border: 2px inset var(--border-color);
-}
-
-input:focus {
-  outline: none;
-  border: 2px solid var(--attention-color);
-}
-
-input[type=submit] {
-  color: var(--text-color);
-  border: 2px outset var(--border-color);
-}
-
-input[type=submit]:hover {
-  border: 2px outset var(--attention-color);
-  box-shadow: 2px 2px 5px var(--text-color);
-  transform: translateY(-1px);
-}
-
-input[type=submit]:active {
-  transform: translateY(1px);
-  box-shadow: none;
-}
 
 .Panel {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: fit-content;
   max-width: var(--panel-max-width);
-
-  border-radius: 10px;
-  border: 2px solid var(--main-color);
 
   text-align: center;
 
   padding: 15px;
 
-  color: var(--text-color);
+  color: var(--on-background-color);
   background-color: var(--background-color);
+}
+
+#logo {
+  max-height: 100px;
+  margin: 0;
+}
+
+.Buttons {
+  width: 100%;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "button button";
+  grid-gap: 40px;
 }
