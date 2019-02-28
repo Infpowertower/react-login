@@ -1,0 +1,57 @@
+:root {
+  --primary-color: rgb(#8bc34a);
+  --primary-variant-color: hsla(200,100%,30%);
+  --secondary-color: blue;
+  --secondary-variant-color: blue;
+  --error-color: red;
+  --background-color: hsla(360,0%,100%);
+  --on-background-color: hsla(360,0%,60%);
+  --on-primary-color: hsla(360,0%,20%);
+  --panel-max-width: 300px;
+  --animation-length: 0.25s;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: hsla(360,0%,0%);
+    --on-background-color: hsla(360,0%,80%);
+  }
+}
+
+
+body {
+  background: var(--background-color);  /* fallback for old browsers */
+  height: 100vh;
+  width: 100vw;
+  font-size: 12pt;
+}
+
+
+.Panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: var(--panel-max-width);
+
+  text-align: center;
+
+  padding: 15px;
+
+  color: var(--on-background-color);
+  background-color: var(--background-color);
+}
+
+#logo {
+  max-height: 100px;
+  margin: 0;
+}
+
+.Buttons {
+  width: 100%;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "button button";
+  grid-gap: 40px;
+}
