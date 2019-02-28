@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Paper from '@material-ui/core/Paper';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
@@ -51,7 +50,7 @@ class App extends Component {
 
   handleSubmit() {
     this.checkFields();
-    doRequest("http://localhost:8001/login", "GET", {name: this.state.name, password: this.state.password}, console.log);
+    doRequest("http://localhost:8001/login", "POST", {name: this.state.name, password: this.state.password}, console.log);
   }
 
   checkFields() {
@@ -68,8 +67,8 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <Paper className="Panel">
           <img id="logo" src={logo} alt="logo"/>
-          <DialogTitle
-            >Enter credentials:</DialogTitle>
+          <h2
+            >Enter credentials:</h2>
           <TextField
             label="Name"
             name="name"
