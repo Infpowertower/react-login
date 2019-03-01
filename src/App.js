@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
@@ -30,6 +32,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      tab: 0,
       name: null,
       password: null,
       errorName: false,
@@ -40,12 +43,17 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkFields = this.checkFields.bind(this);
+    this.handleTab = this.handleTab.bind(this);
   }
 
   handleChange(evt) {
     this.setState({[evt.target.name]: evt.target.value});
     this.setState({errorName: false, errorPassword: false})
     this.setState({helperName: null, helperPassword: null})
+  }
+
+  handleTab(evt, tab) {
+    this.setState({ tab });
   }
 
   handleSubmit() {
@@ -63,13 +71,15 @@ class App extends Component {
   }
 
   render() {
+    const { tab } = this.state;
+
     return (
       <MuiThemeProvider theme={theme}>
         <Paper className="Panel">
           <img id="logo" src={logo} alt="logo"/>
           <h2
             >Enter credentials:</h2>
-          <TextField
+          {tab === 0 && <div><TextField
             label="Name"
             name="name"
             required
@@ -94,8 +104,9 @@ class App extends Component {
             margin="dense"
             variant="outlined"
             onChange={this.handleChange}
-          />
-          <div className="Buttons">
+          /></div>}
+          {tab === 1 && <h1>test</h1>}
+          {/*<div className="Buttons">
               <Button
                 fullWidth
                 variant='text'
@@ -108,7 +119,11 @@ class App extends Component {
                 onClick={this.handleSubmit}
               >Login
             </Button>
-          </div>
+          </div>*/}
+            <Tabs tab={tab} onChange={this.handleTab}>
+              <Tab label="Register" />
+              <Tab label="Login" />
+            </Tabs>
         </Paper>
       </MuiThemeProvider>
     )
