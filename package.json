@@ -6,7 +6,8 @@
     "@material-ui/core": "^3.9.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-scripts": "^2.1.5"
+    "react-scripts": "^2.1.5",
+    "react-swipeable-views": "^0.13.1"
   },
   "scripts": {
     "start": "react-scripts start",

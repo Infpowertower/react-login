@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import SwipeableViews from 'react-swipeable-views';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
@@ -32,7 +33,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: 0,
+      value: 1,
       name: null,
       password: null,
       errorName: false,
@@ -41,9 +42,10 @@ class App extends Component {
       helperPassword: null,
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleTabs = this.handleTabs.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkFields = this.checkFields.bind(this);
-    this.handleTab = this.handleTab.bind(this);
+    this.handleButton = this.handleButton.bind(this);
   }
 
   handleChange(evt) {
@@ -52,9 +54,13 @@ class App extends Component {
     this.setState({helperName: null, helperPassword: null})
   }
 
-  handleTab(evt, tab) {
-    this.setState({ tab });
+  handleButton(evt) {
+    console.log('Button press');
   }
+
+  handleTabs = (event, value) => {
+    this.setState({ value });
+  };
 
   handleSubmit() {
     this.checkFields();
@@ -71,64 +77,148 @@ class App extends Component {
   }
 
   render() {
-    const { tab } = this.state;
-
+    const { value } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <Paper className="Panel">
           <img id="logo" src={logo} alt="logo"/>
-          <h2
-            >Enter credentials:</h2>
-          {tab === 0 && <div><TextField
-            label="Name"
-            name="name"
-            required
-            error={this.state.errorName}
-            helperText={this.state.helperName}
-            autoFocus
-            autofill="username"
-            fullWidth
-            margin="dense"
-            variant="outlined"
-            onChange={this.handleChange}
-          />
-          <TextField
-            label="Password"
-            name="password"
-            type="password"
-            required
-            error={this.state.errorPassword}
-            helperText={this.state.helperPassword}
-            autofill="current-password"
-            fullWidth
-            margin="dense"
-            variant="outlined"
-            onChange={this.handleChange}
-          /></div>}
-          {tab === 1 && <h1>test</h1>}
-          {/*<div className="Buttons">
-              <Button
-                fullWidth
-                variant='text'
-                disabled
-                >Register</Button>
-              <Button
-                color='secondary'
-                variant='contained'
-                fullWidth
-                onClick={this.handleSubmit}
-              >Login
-            </Button>
-          </div>*/}
-            <Tabs tab={tab} onChange={this.handleTab}>
+            <Tabs
+              value={value}
+              onChange={this.handleTabs}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="fullwidth"
+            >
               <Tab label="Register" />
               <Tab label="Login" />
             </Tabs>
+          <SwipeableViews
+            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+            index={value}
+            onChangeIndex={this.handleChangeIndex}
+          >
+            <Register
+              errorName = {this.state.errorName}
+              helperName = {this.state.helperText}
+              errorPassword = {this.state.errorPassword}
+              helperPassword = {this.state.helperPassword}
+              handleChange = {this.handleChange}
+              handleSubmit = {this.handleSubmit}
+            />
+            <Login
+              errorName = {this.state.errorName}
+              helperName = {this.state.helperText}
+              errorPassword = {this.state.errorPassword}
+              helperPassword = {this.state.helperPassword}
+              handleChange = {this.handleChange}
+              handleSubmit = {this.handleSubmit}
+            />
+          </SwipeableViews>
         </Paper>
       </MuiThemeProvider>
     )
   }
 }
+
+class Register extends Component {
+  render() {
+    return(
+      <div className='inputForm'>
+        <TextField
+          label="Name"
+          name="name"
+          required
+          error={this.props.errorName}
+          helperText={this.props.helperName}
+          autoFocus
+          autofill="username"
+          fullWidth
+          margin="dense"
+          variant="outlined"
+          onChange={this.props.handleChange}
+          />
+        <TextField
+          label="Password"
+          name="password"
+          type="password"
+          required
+          error={this.props.errorPassword}
+          helperText={this.props.helperPassword}
+          autofill="current-password"
+          fullWidth
+          margin="dense"
+          variant="outlined"
+          onChange={this.props.handleChange}
+          />
+        <TextField
+          label="Repeat Password"
+          name="password"
+          type="password"
+          required
+          error={this.props.errorPassword}
+          helperText={this.props.helperPassword}
+          autofill="current-password"
+          fullWidth
+          margin="dense"
+          variant="outlined"
+          onChange={this.props.handleChange}
+        />
+        <Button
+          color='secondary'
+          variant='contained'
+          margin='normal'
+          fullWidth
+          onClick={this.props.handleSubmit}
+        >Submit
+        </Button>
+      </div>
+    )
+  }
+}
+
+class Login extends Component {
+  render() {
+    return(
+      <div className='inputForm'>
+        <TextField
+          label="Name"
+          name="name"
+          required
+          error={this.props.errorName}
+          helperText={this.props.helperName}
+          autoFocus
+          autofill="username"
+          fullWidth
+          margin="dense"
+          variant="outlined"
+          onChange={this.props.handleChange}
+        />
+        <TextField
+          label="Password"
+          name="password"
+          type="password"
+          required
+          error={this.props.errorPassword}
+          helperText={this.props.helperPassword}
+          autofill="current-password"
+          fullWidth
+          margin="dense"
+          variant="outlined"
+          onChange={this.props.handleChange}
+        />
+        <Button
+          color='secondary'
+          variant='contained'
+          margin='normal'
+          fullWidth
+          onClick={this.props.handleSubmit}
+        >Submit
+        </Button>
+      </div>
+    )
+  }
+}
+
 
 function doRequest(url, method, data, callback) {
 			let xhr = new XMLHttpRequest();
