@@ -62,6 +62,10 @@ class App extends Component {
     this.setState({ value });
   };
 
+  handleChangeIndex = index => {
+    this.setState({ value: index });
+  };
+
   handleSubmit() {
     this.checkFields();
     doRequest("http://localhost:8001/login", "POST", {name: this.state.name, password: this.state.password}, console.log);
